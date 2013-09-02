@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Cloopen rest by fahchen</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Cloopen rest</h1>
+        <p>The ruby wrapper of cloopen rest.</p>
+
+        <p class="view"><a href="https://github.com/fahchen/cloopen_rest">View the Project on GitHub <small>fahchen/cloopen_rest</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/fahchen/cloopen_rest/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/fahchen/cloopen_rest/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/fahchen/cloopen_rest">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="cloopenrest" class="anchor" href="#cloopenrest"><span class="octicon octicon-link"></span></a>CloopenRest</h1>
+
+<p>The ruby wrapper of cloopen rest.</p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Add this line to your application's Gemfile:</p>
+
+<pre><code>gem 'cloopen_rest'
+</code></pre>
+
+<p>And then execute:</p>
+
+<pre><code>$ bundle
+</code></pre>
+
+<p>Or install it yourself as:</p>
+
+<pre><code>$ gem install cloopen_rest
+</code></pre>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a name="setup-work" class="anchor" href="#setup-work"><span class="octicon octicon-link"></span></a>Setup Work</h3>
+
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'rubygems'</span> <span class="c1"># not necessary with ruby 1.9 but included for completeness</span>
+<span class="nb">require</span> <span class="s1">'cloopen_rest'</span>
+
+<span class="n">account_sid</span> <span class="o">=</span> <span class="s1">'your_account_sid'</span>
+<span class="n">auth_token</span> <span class="o">=</span> <span class="s1">'your_auth_token'</span>
+<span class="n">app_id</span> <span class="o">=</span> <span class="s1">'your_app_id'</span>
+
+<span class="vi">@client</span> <span class="o">=</span> <span class="ss">Cloopen</span><span class="p">:</span><span class="ss">:REST</span><span class="o">::</span><span class="no">Client</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">account_sid</span><span class="p">,</span> <span class="n">auth_token</span><span class="p">,</span> <span class="n">app_id</span><span class="p">)</span>
+<span class="vi">@account</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">account</span>
+</pre></div>
+
+<h3>
+<a name="send-a-sms-official-doc" class="anchor" href="#send-a-sms-official-doc"><span class="octicon octicon-link"></span></a>Send a SMS (<a href="http://42.121.15.9/index.php/%E7%9F%AD%E4%BF%A1">official doc</a>)</h3>
+
+<div class="highlight"><pre><span class="n">message</span> <span class="o">=</span> <span class="vi">@account</span><span class="o">.</span><span class="n">sms</span><span class="o">.</span><span class="n">messages</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+  <span class="ss">to</span><span class="p">:</span> <span class="s1">'your_phone_number'</span><span class="p">,</span>
+  <span class="ss">body</span><span class="p">:</span> <span class="s1">'text sms from gem'</span><span class="p">,</span>
+  <span class="n">sub_account_sid</span><span class="p">:</span> <span class="s1">'your_sub_account_sid'</span><span class="p">)</span>
+
+<span class="c1"># Get the resquest response and status</span>
+<span class="n">message</span><span class="o">.</span><span class="n">response</span>
+<span class="n">message</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">body</span>
+<span class="n">message</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">status</span>
+<span class="n">message</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span>
+</pre></div>
+
+<h3>
+<a name="get-info-of-the-account-official-doc" class="anchor" href="#get-info-of-the-account-official-doc"><span class="octicon octicon-link"></span></a>Get info of the account (<a href="http://42.121.15.9/index.php/%E8%B4%A6%E6%88%B7%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2">official doc</a>)</h3>
+
+<div class="highlight"><pre><span class="n">info</span> <span class="o">=</span> <span class="vi">@account</span><span class="o">.</span><span class="n">account_info</span><span class="o">.</span><span class="n">get</span>
+
+<span class="n">info</span><span class="o">.</span><span class="n">response</span>
+</pre></div>
+
+<h3>
+<a name="make-a-landing-call-official-doc" class="anchor" href="#make-a-landing-call-official-doc"><span class="octicon octicon-link"></span></a>Make a landing call (<a href="http://42.121.15.9/index.php/%E8%90%A5%E9%94%80%E5%A4%96%E5%91%BC">official doc</a>)</h3>
+
+<div class="highlight"><pre><span class="n">landing_call</span> <span class="o">=</span> <span class="vi">@account</span><span class="o">.</span><span class="n">calls</span><span class="o">.</span><span class="n">landing_calls</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+  <span class="ss">to</span><span class="p">:</span> <span class="s1">'your_phone_number'</span><span class="p">,</span>
+  <span class="n">media_txt</span><span class="p">:</span> <span class="s1">'Hello, from Gem.'</span><span class="p">,</span>
+  <span class="n">play_times</span><span class="p">:</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">landing_call</span><span class="o">.</span><span class="n">response</span>
+</pre></div>
+
+<h3>
+<a name="create-a-sub_account-official-doc" class="anchor" href="#create-a-sub_account-official-doc"><span class="octicon octicon-link"></span></a>Create a sub_account (<a href="http://42.121.15.9/index.php/%E5%AD%90%E8%B4%A6%E6%88%B7">official doc</a>)</h3>
+
+<div class="highlight"><pre><span class="n">sub_account</span> <span class="o">=</span> <span class="vi">@account</span><span class="o">.</span><span class="n">sub_accounts</span><span class="o">.</span><span class="n">create</span> <span class="n">friendly_name</span><span class="p">:</span> <span class="s1">'awesome_name'</span>
+
+<span class="n">sub_account</span><span class="o">.</span><span class="n">response</span>
+</pre></div>
+
+<h2>
+<a name="todo" class="anchor" href="#todo"><span class="octicon octicon-link"></span></a>TODO</h2>
+
+<ul>
+<li>Test</li>
+<li>More APIs</li>
+</ul><h2>
+<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<ol>
+<li>Fork it</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol><h2>
+<a name="thanks" class="anchor" href="#thanks"><span class="octicon octicon-link"></span></a>Thanks</h2>
+
+<p>Inspired by <a href="https://github.com/twilio/twilio-ruby">twilio-ruby</a></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/fahchen">fahchen</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
