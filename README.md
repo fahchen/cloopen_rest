@@ -1,6 +1,6 @@
 # CloopenRest
 
-TODO: Write a gem description
+The ruby wrapper of cloopen rest.
 
 ## Installation
 
