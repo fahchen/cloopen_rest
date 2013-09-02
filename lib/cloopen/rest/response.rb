@@ -1,7 +1,7 @@
 module Cloopen
   module REST
     class Response
-      STATUS_CODE_DESCRIPTIONS = YAML.load_file("conf/status_code_descriptions.yml")
+      STATUS_CODE_DESCRIPTIONS = YAML.load_file(File.expand_path('../../../../conf/status_code_descriptions.yml', __FILE__))
 
       attr_reader :status, :status_code, :body
       def initialize(body)
