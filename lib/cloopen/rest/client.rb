@@ -11,7 +11,7 @@ module Cloopen
       }
 
       PRODUCTION_HOST = 'https://app.cloopen.com'
-      LOCAL_HOST = '127.0.0.1'
+      LOCAL_HOST = 'localhost'
       SANDBOX_HOST = 'https://sandboxapp.cloopen.com'
 
       attr_reader :account_sid, :auth_token, :signature, :authorization, :config, :headers, :account, :app_id
