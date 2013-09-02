@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['dev.fah@gmail.com']
   spec.description   = %q{the ruby wrapper of cloopen rest}
   spec.summary       = %q{cloopen rest}
-  spec.homepage      = ''
+  spec.homepage      = 'http://fahchen.github.io/cloopen_rest/'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split($/)
