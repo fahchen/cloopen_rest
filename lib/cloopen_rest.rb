@@ -1,4 +1,6 @@
-require 'httparty'
+require 'multi_xml'
+require 'json'
+require 'rest_client'
 require 'builder'
 require 'net/http'
 require 'digest/md5'

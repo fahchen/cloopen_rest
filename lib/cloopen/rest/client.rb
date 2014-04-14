@@ -30,13 +30,15 @@ module Cloopen
       [:get, :post].each do |method|
         define_method method do |resource, *args|
           uri = "#{@config[:host]}:#{@config[:port]}#{resource.uri}?sig=#{@signature}"
-          options = { headers: @headers }
-          if [:post, :put].include? method
-            params = build_body args[0], resource
-            params = {} if params.empty?
-            options.merge! body: params
-          end
-          HTTParty.send(method, uri, options)
+          response = case method
+                     when :get
+                       RestClient.get(uri, @headers)
+                     when :post
+                       payload = build_body args[0], resource
+                       RestClient.post(uri, payload, @headers)
+                     else
+                     end
+          MultiXml.parse response
         end
       end
 

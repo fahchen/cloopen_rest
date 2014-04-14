@@ -28,7 +28,7 @@ auth_token = 'your_auth_token'
 app_id = 'your_app_id'
 
 @client = Cloopen::REST::Client.new(account_sid, auth_token, app_id)
-@account = client.account
+@account = @client.account
 ```
 
 ### Send a SMS ([official doc](http://42.121.15.9/index.php/短信))
